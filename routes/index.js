@@ -1,9 +1,9 @@
-var rootRouter = require('./root');
-var usersRouter = require('./users');
+var rootRouter = require('./home');
+var feedbackRouter = require('./feedback');
 
 var root = [
   { path: '/', route: rootRouter },
-  { path: '/users', route: usersRouter }
+  { path: '/feedback', route: feedbackRouter }
 ];
 
 module.exports = root;
