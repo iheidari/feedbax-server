@@ -12,7 +12,7 @@ function get(req, res, next) {
 
 function getById(req, res, next) {
   var id = req.params.id;
-  var feedback = findById(id);
+  var feedback = findById(id, feedbacks);
   res.send(feedback);
 }
 
@@ -57,7 +57,8 @@ function getNewId(feedbacks) {
   return feedbacks.length === 0 ? 1 : feedbacks[feedbacks.length - 1].id + 1;
 }
 
-function findById(id, feedbacks) {
+function findById(feedbackId, feedbacks) {
+  var id = parseInt(feedbackId);
   return feedbacks.find(function(feedback) {
     return feedback.id === id;
   });
