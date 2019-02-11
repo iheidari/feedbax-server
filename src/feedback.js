@@ -1,13 +1,60 @@
+var util = require('./util');
+
+//dummy data for now
 var feedbacks = [
   {
     id: 1,
-    title: 'first title',
-    description: 'description for first option in the list'
+    title: 'Grid',
+    description:
+      'Material Grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.'
+  },
+  {
+    id: 2,
+    title: 'Breakpoints',
+    description:
+      'We provide a low-level API that enables the use of breakpoints in a wide variety of contexts.'
+  },
+  {
+    id: 4,
+    title: 'useMediaQuery',
+    description: 'This is a CSS media query hook for React.'
+  },
+  {
+    id: 5,
+    title: 'Hidden',
+    description:
+      'Hidden component can be used to change the visibility of the elements.'
+  },
+  {
+    id: 7,
+    title: 'Sizes',
+    description: 'Fancy larger or smaller buttons? Use the size property.'
   }
 ];
 
 function get(req, res, next) {
-  res.send(feedbacks);
+  var page = req.query.page || 1;
+  var take = req.query.take || 10;
+  take = take > 100 ? 100 : take;
+
+  var resultFeedback = [];
+
+  if (req.query.sort) {
+    var sort = req.query.sort;
+    var order = req.query.order || 'asc';
+
+    resultFeedback = [...feedbacks];
+    if (order.toLowerCase() === 'desc') {
+      resultFeedback.sort(util.compareByProperty(sort, order));
+    } else {
+      resultFeedback.sort(util.compareByProperty(sort));
+    }
+    resultFeedback = util.paging(resultFeedback, page, take);
+  } else {
+    resultFeedback = util.paging(feedbacks, page, take);
+  }
+
+  res.send(resultFeedback);
 }
 
 function getById(req, res, next) {
