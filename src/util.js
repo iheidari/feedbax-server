@@ -1,13 +1,21 @@
 function compare(property, object1, object2) {
-  if (object1[property] < object2[property]) return -1;
-  if (object1[property] > object2[property]) return 1;
+  const value1 =
+    typeof object1[property] === 'string'
+      ? object1[property].toLowerCase()
+      : object1[property];
+  const value2 =
+    typeof object2[property] === 'string'
+      ? object2[property].toLowerCase()
+      : object2[property];
+  if (value1 < value2) return -1;
+  if (value1 > value2) return 1;
   return 0;
 }
 
 function compareByProperty(property, order) {
-  var orderRadio = order === 'desc' ? -1 : 1;
+  var orderRatio = order === 'desc' ? -1 : 1;
   return function(object1, object2) {
-    return orderRadio * compare(property, object1, object2);
+    return orderRatio * compare(property, object1, object2);
   };
 }
 
