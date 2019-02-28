@@ -27,6 +27,18 @@ module.exports = {
       id: 7,
       title: 'Sizes',
       description: 'Fancy larger or smaller buttons? Use the size property.'
+    },
+    {
+      id: 9,
+      title: 'Resources',
+      description:
+        'In addition to the official documentation and hacking around on my own, I found the following two articles particularly helpful.'
+    },
+    {
+      id: 10,
+      title: 'Differency',
+      description:
+        'If you are also wishing to look at visual regression testing in addition to unit and integration testing I can recommend looking to Differencify.'
     }
   ]
 };

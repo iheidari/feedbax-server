@@ -23,7 +23,7 @@ function get(req, res, next) {
     resultFeedback = util.paging(feedbacks, page, take);
   }
 
-  res.send(resultFeedback);
+  res.send({ result: resultFeedback, count: feedbacks.length });
 }
 
 function getById(req, res, next) {
