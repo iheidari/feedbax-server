@@ -41,3 +41,15 @@ describe('compareByProperty', () => {
     expect(compareResult2).toBe(1);
   });
 });
+
+describe('paging', () => {
+  test('normal paging', () => {
+    expect(util.paging(feedbacks, 1, 1)).toHaveLength(1);
+    expect(util.paging(feedbacks, 100, 1)).toHaveLength(0);
+    expect(util.paging(feedbacks, 2, 2)).toHaveLength(2);
+    expect(util.paging(feedbacks, 1, feedbacks.length + 5)).toHaveLength(
+      feedbacks.length
+    );
+    expect(util.paging(feedbacks, 2, feedbacks.length - 1)).toHaveLength(1);
+  });
+});
