@@ -1,4 +1,4 @@
-# Feedbax
+# Feedbax-server
 
 [![Build Status](https://travis-ci.com/iheidari/feedbax-server.svg?branch=master)](https://travis-ci.com/iheidari/feedbax-server)
 
