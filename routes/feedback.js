@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var feedback = require('../src/feedback');
+var feedback = require('../controlers/Feedback');
 
 router.get('/', feedback.get);
 router.get('/:id', feedback.getById);
