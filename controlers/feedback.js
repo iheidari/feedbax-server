@@ -1,25 +1,25 @@
 const repository = require('../repositories/Feedback');
 
-function get(req, res, next) {
-  var page = req.query.page;
-  var take = req.query.take;
+const get = async (req, res, next) => {
+  var page = parseInt(req.query.page);
+  var take = parseInt(req.query.take);
   var sort = req.query.sort;
   var order = req.query.order;
+  var result = await repository.getFeedbacks(page, take, sort, order);
+  res.send(result);
+};
 
-  res.send(repository.getFeedbacks(page, take, sort, order));
-}
-
-function getById(req, res, next) {
+const getById = async (req, res, next) => {
   var id = req.params.id;
-  res.send(repository.getFeedbackById(id));
-}
+  res.send(await repository.getFeedbackById(id));
+};
 
-function post(req, res, next) {
+const post = async (req, res, next) => {
   var model = req.body;
-  res.send(repository.saveFeedback(model));
-}
+  res.send(await repository.saveFeedback(model));
+};
 
-function deleteItem(req, res, next) {
+const deleteItem = async (req, res, next) => {
   //unexpected token delete error
   var id = parseInt(req.params.id);
   if (!id) {
@@ -27,7 +27,7 @@ function deleteItem(req, res, next) {
     res.send('Invalid Id');
   }
 
-  res.send(repository.deleteFeedback(id));
-}
+  res.send(await repository.deleteFeedback(id));
+};
 
 module.exports = { get, getById, post, delete: deleteItem };

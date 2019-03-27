@@ -24,7 +24,7 @@ function getFeedbackById(id) {
 }
 
 function saveFeedback(model) {
-  let modelToSave = { ...model }; //deep copy
+  let modelToSave = { ...model }; //TODO:deep copy
   if (!modelToSave.id) {
     modelToSave.id = getNewId(feedbacks);
     feedbacks.push(modelToSave);
