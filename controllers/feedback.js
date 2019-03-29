@@ -16,6 +16,8 @@ const getById = async (req, res, next) => {
 
 const post = async (req, res, next) => {
   var model = req.body;
+  var id = req.params.id;
+  if (id) model.id = id; //TODO: more horminization between express and fastify implementation
   res.send(await repository.saveFeedback(model));
 };
 
