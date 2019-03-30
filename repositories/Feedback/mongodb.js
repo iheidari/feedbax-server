@@ -28,7 +28,7 @@ const getFeedbackById = async id => {
 const saveFeedback = async model => {
   try {
     let savedFeedback;
-    if (model.id) {
+    if (model._id) {
       savedFeedback = updateFeedback(model);
     } else {
       savedFeedback = await createFeedback(model);
@@ -41,7 +41,7 @@ const saveFeedback = async model => {
 
 const updateFeedback = async model => {
   const { ...updateData } = model;
-  const update = await Feedback.findByIdAndUpdate(model.id, updateData, {
+  const update = await Feedback.findByIdAndUpdate(model._id, updateData, {
     new: true
   });
   return update;
