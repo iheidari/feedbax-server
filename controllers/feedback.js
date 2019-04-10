@@ -21,7 +21,7 @@ const post = async (req, res, next) => {
 
 const deleteItem = async (req, res, next) => {
   //unexpected token delete error
-  var id = parseInt(req.params.id);
+  var id = req.params.id;
   if (!id) {
     res.status(400);
     res.send('Invalid Id');
